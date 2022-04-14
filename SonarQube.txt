@@ -1,0 +1,30 @@
+Maintaining the code quality is the ar most important thing throughout the development of the project.we would want to find out issues in the code as soon as
+possible and we want to be done as a continous process
+
+
+
+Code issues such as
+-If there are unnecessary import
+-Wether the package appropriate or not
+-If there is any possibility of null pointer exception
+-If there are any unnecessary syster.out.prrintln in the code
+-If there are unncessary blank methods
+-If there are complex loops in the code..
+To Acheive this we have a tool called as SONAR QUBE WHich helps us to give code quality and standards
+
+
+
+Steps to use SONAR QUBE
+1.Download Sonar Qube
+2.Open bin directory and depending on the operating system we are using run sonar server
+3.Sonar Cube consists of following components 
+	sonar qube server--This is a web application which by default runs on http://localhost:9000
+	->This shows sonar Analysis report
+
+By default sonaqube gives you user name as admin password also admin
+
+we can start the sonar by using startsonar
+
+
+if we add the new stages in the git file and we click build now we can see in the sonarqube page added new code and with different colour
+

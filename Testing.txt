@@ -1,0 +1,38 @@
+1.CodeCoverage 
+	*is a metric that can help you understand how much of business code is tested 
+	*Code Coverage report can be generated and analyzed to ensure the code quality 
+	*Code coverage is one of the important process in the devolopment which must be carried out 
+	*JaCoCo is the most popular code coverage too for java application 
+
+
+<plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+We have to add these plugin in the pom.xml 
+use the clean package in maven build golas 
+it creates the site folder in that site folder we can get the html file that file contains full report of our application 
+how much of code is tested and how much of code is not tested and partially tested 
+
+
+
+1.Green diamond - Its shows code is 100% tested 
+2.Yello diamod - partially tested 
+3.Red diamond- not tested 

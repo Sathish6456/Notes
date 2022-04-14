@@ -1,0 +1,39 @@
+download the war file and execute that war file by using the bwlow command 
+we have to go to the location where we have download the war file
+java- jar jenkins.war
+
+jenkins was running on 8080 port by defaultly (we have to run tomcat also that's we can change the jenkins port number to 8070)
+
+
+New Item (Creating new job)
+Build history - Gives you what was the result of last builds 
+Manage Jenkins-Used to download plugins and set software environment variables
+	ex:jdk path,maven path
+
+
+http://updates.jenkins-ci.org/current/update-center.json
+if jenkins plugins was not working we have to paste the link int the advanced and 
+
+download the below rar extract it and paste that folders into .jenkins>plugins
+https://drive.google.com/drive/folders/1PO-UPDL75syIYEZi2jGDpMUNk1toC_rU?usp=sharing
+
+1)is git repo is ready?
+2)configure git jenkins?
+
+and we can set the paths in the jenkins Global tool configuration
+
+we can set the Git Path and Maven Path
+
+----------**********----------
+PIPELINE 
+
+pipeline is job related with each other in a sequency 
+			ex:First job could be checking out the build 
+			Second job to be packaging the build 
+			Third job to be publishing build to QAServer 
+			fourth server could be publishing the build to production server 
+			fifth job could be updating respective stake holders by e-mail
+-------------****************-------------------------
+plugins link https://drive.google.com/drive/folders/1PO-UPDL75syIYEZi2jGDpMUNk1toC_rU?usp=sharing
+
+download and paste into C:\Users\MS65885\.jenkins\plugins

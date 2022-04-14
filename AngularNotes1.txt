@@ -1,0 +1,69 @@
+step 1:
+app.html- [formGroup]="userForm" before we need to add property in the app.component.ts userForm:FormGroup and 
+	bind in the app.html 
+step 2:
+in the app.module.ts we have to import the ReactiveFormsModule,This module is needed for reactive forms
+
+step3:
+in the app.component.ts we have to create the constructor we can assign the userForm
+	userForm:FormGroup ;
+
+  constructor(private builder:FormBuilder) {
+     this.userForm=this.builder.group({
+	 userName:['zensar']	//By Defaultly in the usename text field it shows the zensar otherwise it will be blank
+ 	});
+ 		 }
+step 4:
+in the app.component.html <input type="button" (click)="login()"> we can declare a login() method in the app.component.ts
+
+-------------------------------------------------------********------------------------------------------------------------
+HTTP STATUS CODES
+It is must to return appropriate status code from server app to client app
+
+2xx success
+-----------------------------------------------
+200 OK
+201 created
+204 no content
+
+
+
+
+4xx are client errors
+--------------------------------------------------
+400 bad request -validation rules are failed
+404 not found -resource looking not present on server
+401 unauthorized -wrong credentials
+403 forbidden -don't have access to a resource
+
+
+
+5xx server errors
+---------------------------------------------------
+500 Internal server error
+
+-----------------------------------------------------------*************---------------------------------------------------
+
+//by using this annotation we can handle the exceptions for whole class
+	//if any of the controller method trows Exception type mentioned in @ExceptionHandler
+	
+	//@ExceptionHandler(Exception.class)				
+	public String handleException() {
+		System.out.println("In Handle Exception ");
+		return "Please Try Again";
+	}
+
+
+
+------------------------------------****************************--------------------------------------------------------------
+Model class name
+model class field names thier data types
+Rest Endpoints 
+	-URL
+	-what these end points accept(Request Body) and return(Response Body) 
+	-Status code
+		-on success
+		-on failure
+	-Headders
+	-Http Method(GET,PUT,POST,DELTE)
+

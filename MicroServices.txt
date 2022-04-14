@@ -1,0 +1,101 @@
+Eureka Server will register our couple of services
+
+we have to add an annotation in eureka server application
+@EnableEurekaServer
+
+in the message application
+Add this annotation EurekaServer DiscoveryClient  and the dependancy in the pom.xml (Dependancies For the both applications)
+
+We have the add the annotation and dependancies for our client application @EnableFeignClients, OpenFeign dependancy
+ex:DisplayService Application 
+
+we can give the name in the app.properties that name should be displayed on the eureka server 
+ex:spring.application.name=messageservice, spring.application.name=displayservice
+
+We no need to use the RestTemplate in Microservices
+	we can create an of our Client Interface in that interface we have to create method, and the method name should 
+	match with what we have write in the Restcontroller method
+	we can add the @FeignClient annotation for that interface
+	in the restcontroller we no need to use the RestTemplate 
+
+ServiceName 			port no
+messageservice			8080
+displayservice			8082
+Eureka Server			8761
+ApiGateWay			9090
+zipkin 				9411
+configserver 			8888 we have add the 2 dependancies config server and eureka discovery client
+
+mvn clean - it deletes all compiled artifacts(target directory) 
+ 
+mvn package - it compiles the business source code, run all test cases and create artifact(jar or war)
+
+set M2_HOME=D:\Maven-3.3.9\Apache-maven-3.3.9
+
+set PATH=%JAVA_HOME%\bin;%M2_HOME%\bin;%PATH%;
+
+set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_91
+
+logging 
+
+Distrubuted logging,tracing 
+	-id
+we hwve to add the slueth dependancy 
+
+[Servicename,traceid,span id]- in the console these are displayed
+
+Checking these logs across all console is a difficult task (Not possible)
+All the logs in GUI form 
+		-based on servicename 
+		-traceid
+
+
+------***-------
+Zipkin 
+-centralized location for all application 
+
+----*******------------
+configserver 8888 
+centralized location for storing all application properties for all microservices 
+		where is the centralized location ?
+
+		locally - not used in production (good for testing ,devolopment )
+		gitrepo -recommended
+
+we have add the 2 dependancies config server and eureka discovery client
+we can put annotation @EnableEurekaClient in the application
+
+
+in the production if we changes in the data ex:git zensartechnologies
+
+we have to add the actuator dependancy and add the propertiesin the messageservice
+
+management.endpoints.web.exposure.include=refresh and 
+add the annotation in the messagerest controller @RefreshScope
+
+while we are creating a new file in repository the name should be match with that microsevices name
+ex:messageservice
+
+
+when we are changes the data in git we have to post the url in postman then refresh the chrome 
+http://admw46zlpc1170.ind.zensar.com:8082/actuator/refresh
+ex: Zensar Technologies Pune to Zensar Technologies India
+
+
+----------------************------------------------------------
+Steps for which we should run microservices 
+
+1.Run Eureka Server (Keep running forever)		8761
+2.Run Config Server(keep it running)			8888
+		-Behind th scene we can change property value(Typically git hub)
+3.Run ApiGateway(Keep it running)			9090
+4.Zipkin Server(Keep it running)			9411
+
+-WithOut Above 4 steps we can't run our microservices
+
+5.OLX-User						9051
+6.OLX-Master						9052
+7.OLX-Advertise 					9053
+
+
+jenkins							8080

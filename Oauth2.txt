@@ -1,0 +1,5 @@
+1)we have to create our project in cloud.google 
+	we can get some secret key and client id 
+2)we have to paste that in the application.properties 
+3)when we are goto our project in web by using rest api
+	it was asking the google credentials

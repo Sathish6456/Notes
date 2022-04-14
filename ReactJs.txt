@@ -1,0 +1,95 @@
+we can create ReactJS by using this command
+npx create-react-app demo1
+
+we can run our application by using 
+npm start , if it is angular app we are using the ng serve 
+when we are giving the start command it starts our application and automatically opens the browsers on 3000 port number
+
+cd.. it will return to the folder
+
+if we give the "rsf" 
+
+it will gives a function
+
+if we use the "rcfc" 
+
+it gives the constructors and many methods 
+
+we can bind that property in parent component by using tag 
+
+Components are 2 types in the React 
+1)Functional Component - in the functional componenet we are passing the arguments 
+2)Class Component	- in the class componenet we can't passing the arguments so we can create the constroctor in that 
+			constructors we can pass the arguments 
+
+in react we can create components manually 
+
+
+Export in JS - if we want use the class out side of our JS file we can use the Export 
+
+onChange- when we are using this event this can print each and every value when we are giving 
+ex:Sathish 
+
+in the console it prints the 
+S
+Sa
+Sat
+Sath
+Sathi
+Sathis
+Sathish 
+
+----------------------------------------------------****Adding Styles*****--------------------------------------------------------
+"INLINE" styles in the ReactApp
+we can create like object in function component
+ex:let headStyle ={
+        padding:"20px",
+        backgroundColor:"blue",
+        foregroundColor:"white"
+    } 
+
+ <h1 style={headStyle}>Example1</h1>  //we can add the styles internally 
+<p style={{backgroundColor:"orange",foregroundColor:"white"}}>This is an inline stylesheet we add styles internally it means with in the tags we can add stylings</p>
+	//from above syntax we can add the inline stylesheet
+
+and we can also add the style externally and globally like in Angular
+
+---------------*****************---------------------
+AXIOS
+
+ReactJS will use the axios for connecting to DataBase 
+we can install the axios by using below command
+npm insall axios  
+it was installing for that particular project only, which we are in the project
+***************
+We can put the @CrossOrigin for our controller class in our spring boot application with the React app port 
+ex:@CrossOrigin(origins ="http:/localhost:3000")
+
+Our Spring boot app interact with React App(Which was running)
+
+
+-------------------********************---------------------------
+
+ROUTING
+
+we have to add the routing module in our project 
+
+by using the below command we can install the routing for our project  
+
+npm install react-router-dom@6
+and also we have to import BrowserRouter from 'react-router-dom'; and add the tag index.js file
+
+
+and also we have to import in the app.js import {} from 'react-router-dom';
+
+---------------**********************-----------------------------------
+Redux
+
+we can install the redux by using this below command 
+npm install redux react-redux
+we have to create the redux under the src
+
+Action object is an object 
+
+we have to import the provider from the react-redux
+

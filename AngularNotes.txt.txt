@@ -1,0 +1,259 @@
+npm install -g @angular/cli   @(8.0.3) //using this command we can install the angular
+
+ng version 				//we can see the version of angulr cli
+
+ng new helloworld 			//creates new angular project with the name of hello world
+
+ng serve --port 4201 			//by using this we can change the command
+
+exploring the project structure-
+
+1.app this contains angular componants
+
+*what is componant?
+ This is independant block of code we can be refused in angular project.
+
+ Every componant has one html custom tag associate with it
+ Every componant has four files
+
+.html
+.css
+.ts
+.spec.ts 
+
+component does not containing the business logic 
+
+Componenet = html+css+ts(Class (@Component))
+selector-logical name(app-componentName)
+style.css-it is global style like we can add same properties for all components by using this file
+
+ng serve    				// by use this command we can runt the angular project 
+
+{{title}}				//String interpolation This helps us to fetch value of property from class
+
+Selector of the componanat is used in html to instantiate componant class
+ex:selector: 'app-root'
+
+Selector of the componanat is the logical name written on top of the class using @Componant decorator (in java we call it as annotation)\
+
+ng generate component componentName (or) ng g c ComponentName		// it can creates the new componant
+
+.html
+.css
+.ts
+.spec.ts - contains test cases unit testing code
+
+
+{{}}-interpolation 		//it fetches the data from Component class Property in ts()
+
+
+***PROPERTY BINDING***
+
+Following syntax is property binding 
+<input type="text" [value]="name">
+
+Where technology is a property of component class
+
+Propperty binding is done using []
+
+Interpolation binding using {{}}}
+
+Bannana Binding using {[]}}
+
+**DIRECTIVES***
+ 1)ngFor is directive given by Angular
+ 	messages is a property defined in ts exactly match component file
+ 	in the below syntax messeges is a local variable name and we can add like alias name for the messages
+
+2)ngIf is the directive defined by angular that show conditionally
+
+**FormsModule--Mandatory for the ngModel
+we have to import the forms module mandatoryly
+
+
+-----------------------------------**************************--------------------------------------------------------
+
+
+Our Frontend application should communicates with the database 
+
+by creating the class in the src>model>Class name.ts
+
+
+
+***--Angualr pipes--***
+
+        Angualr pipes helps us to transform
+        There are many pipes
+        For String date json currency number
+        We can also create our own pipes(User defined pipes)
+        String pipes- lowercase,uppercase
+
+app Component -   root
+messageComponent- parent
+messageupdate -	  child
+messagedelete -   child
+
+
+1.pass the data from message component to message update component
+	data from parent to child
+
+2.pass the data from message update component to message component 
+	data from child to parent 
+
+
+----***Services***----
+1)Service - This is responsible for dealing with the data,backend,business logic
+2)Services don't have any view
+3)Returns result to component 
+4)Then component takes responsibility of showing that in UI
+5)Command to create service is ng generate service name
+			(or) ng g s name
+6)Component uses service for business logic 
+7)Component is dependent on service
+8)Service is dependancy of component 
+9)DI in angular DI is used for Component to use Service  
+
+The below four components are the Need to create 
+
+									***MENU****
+									***LOGIN***
+									***MESSAGE***
+									***FOOTER***
+
+
+
+
+
+------------------------***ROUTES***--------------------------------  
+
+it is manage navigation in angular app 
+ex: this.router.navigate(['login']); it will navigate to this page
+
+To use this we need to follow couple of steps
+
+app.module.ts
+1)Declare an array which tells 
+
+
+
+   {path:"home",redirectTo:""},
+  {path:"",component:HomeComponent}                   //it displays the homepage by default
+
+property binding by using the routerLink whole page was not refreshed 
+
+-----------------****--------------------------
+Template driven forms
+Validation 
+Angular automatically adds css classes to forms fields at runtime
+
+
+ng-untouched-if form element is not yet touched(visited by mouse or keyboard in the username text field)
+ng-pristine-if value of this is not yet edited 
+ng-valid-if value of element is valid according to validation rules we have specified 
+ng-invalid-if value of element is invalid according to validation rules we have specified 
+
+
+
+-------------------------------------------***********-----------------------------------------------
+Observables
+these are going to execute for subscribe()
+
+
+
+
+
+
+
+
+
+
+
+
+----------------*****---------------------------------
+1)App module ts- http module add and import 
+2)Data Service- DI in the constructor 
+    and declare a method in that method we have to add server port number
+3)appmodule.ts- service.getMessage().subscribe();
+
+---------------------***Delete Message***--------------------------------
+1)we have to write some code in sts controller and Config
+2)in the services we declare a  delete method 
+	 deleteMessageById(id:number){
+     return this.http.delete('http://localhost:8080/api/message'+id)
+3)messageupdatecomponent.ts- declare a delte method and in the same .ts file add some property(outputMessage:string=" ";)
+4)in the messagecomponent.html we have to bind that property which we declare in the messageupdatecomponent.ts 
+
+-----------------------***Update Message***---------------------------------
+1)we have to write some code in sts controller and Config
+2)declare a methode in the service and use the put method 
+
+
+
+-------------------------***************------------------------------------------
+1)in the dataservice no need write url for every method, in the environment.ts we can set the url name 
+	by using that 
+
+
+******-----`ng build` replaces `environment.ts` with `environment.prod.ts`-----*****
+
+
+
+
+
+in the WebCongiguration
+.allowedMethods("*") by using this syntax web can use all the mappings
+
+
+in the SecurityConfiguration
+
+protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth 
+		auth.inMemoryAuthentication().withUser("zensar").password("{noop}zensar").roles("USER");
+	}
+	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http
+				.csrf().disable()
+				.authorizeRequests()
+				.anyRequest()
+				.authenticated()
+				.and()
+				.httpBasic();
+
+
+
+
+-------------------------*************************----------------------------------------------
+
+if we want to add the security for particular content like message 
+1)we have to create a authguard service 
+	export class AuthguardService implements CanActivate{  		//implements 
+
+  constructor() { }
+  canActivate():boolean {
+    console.log("InCanActivate")
+  if(true){
+      this.router.navigate(['login'])
+      return false;
+    }
+  }
+}
+
+
+2) in the appmodule.ts we have to add 
+	{path:"message",component:MessageComponent,canActivate:[AuthguardService]},
+
+
+
+--------------------------**************-------------------------------------------
+WE HAVE TO CREATE THE BASIC INTERCEPTOR FOR HTTP CALLS
+
+
+-------------------------------**********************------------------------------------
+Ng build 
+it builds our Angular project and creates the dist folder
+
+we can't deploy our project because we are devolopping our project using typescript 
+
+so when we got the dist  internally it converts our typescript file to javascript 

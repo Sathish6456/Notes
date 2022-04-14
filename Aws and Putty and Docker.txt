@@ -1,0 +1,190 @@
+_____________________________________________________************************************************______________________________________________________________
+AWS is the one of the most popular cloud platform offers lot of services following are few important and popular service
+
+by default aws gives you one user named ec-2 user
+
+1.ec2 elastic cloud compute offers you vareity of different virtual machine 
+
+2.RDS relational data base service this offers you connection to all possible relational DB such as mysql[db2,oracle etc]
+
+3.Elastic bean stalk is easy to use service for deploying web application devolopped with lot of different technology such as java,python, ..net etc
+
+4.S3 Bucket simple storage service offers you container to store object such as html file, css.file
+
+	we can also deploy web site using S3 Bucket
+
+
+
+------------------------------------------------------**********************PUTTY************************______________________________________________________________
+we can trasfer the encrypted file in the putty gen,
+we have to open the putty and paste the aws address 
+
+in the ssh auth we have to paste converted encrypted file
+
+it opens the linux cmd we have to write some commands in that 
+
+1)sudo su -
+2)
+
+we have to install the softwares To deploy a war file on tomcat in backend what we need to install
+1.MySql
+2.JRE
+3.Tomcat  
+4.Set Environment Variables to run that application 
+5.This Application needs linux(some specific version)above listning
+  Deployer need to recreate the environment on production machine for running the application as it was on devolopment machine 
+  for ex:downloading/installing MYSql version, etc.
+
+
+DCOKER COMMANDS
+
+ec-user 
+
+sudo su -
+
+yum install docker
+
+usermod -aG docker ec2-user
+
+sudo service docker start
+
+docker run hello-world
+This command pull the image if it is not avialable locally and runs 
+
+docker pull name of the image
+	ex:docker pull hello-world
+		this commad pulls the docker image from docker hub
+docker images
+this command tells you all the downloaded availble images in our system
+
+docker ps 
+	this command tells u how many containers are currently running
+ 
+docker pull tomcat
+
+docker run -d -p 8080:8080 tomcat
+-d stands for running the container in detach mode
+-p stands for port we want to exports out side world 
+
+docker stop containerid
+this command deletes any container running given it's id 
+
+docker rmi imageid --force  
+this command deletes the image running given it's id
+
+DOCKER CONTAINER 
+	it is a standard unit of sofetware that packages  of code and all of is dependendancies(enviorment/platform So that application)can run quickly and easily
+	
+	We create docker images as per our reqirement 
+	
+********Containers are running instances of docker images  
+
+Cutomer Docker Images
+it is possible to create Custom Docker Images, it is done as follows :
+1.inherit from readymade images availble on docker-hub + all Custom Congiguration = Custom Docker Image
+
+to create a custom image we need to create a file called as Dockerfile
+1.identify if we have any prebuilt image on dockerhum that satisfy our software reqire
+2.After identifying we need to inherit that image 
+	ex:FROM openjdk:8 (we can write the propert name in capitals)
+3.keep on adding ur custom configurations[depends on application reqirement]
+		ex:EXPOSE 8080
+we have to add th <finalName>test</teatName> in the pom.xml 
+
+COPY ./target/test.jar /usr/local/bin/test.jar
+CMD ["java","-jar","/usr/local/bin/test.jar"]
+
+4.Once docker file is ready we ned to build image using this docker file 
+	Todo that following common is used :
+	>docker build -t /test					[-t is tag name 2 part:1-> username --part 2:image name followed by .(dot directory where docker file is present)]
+
+docer-machine ip
+
+docker login 
+	is used to login to docker hub this is done typically to push the image to docker hub 
+
+docker pus image_name(sathish6456.)/test
+	it will push the image to DockerHub
+
+Todo 
+-Use Above two commands in jenkins pipeline
+
+-----------------------------------------------------
+we can uplod the webapp.zip and we have to unzip the webapp in the mobxterm cmd 
+we can get the pom.xml for executing that file we have to download the maven in the mobxterm
+
+wget  https://dlcdn.apache.org/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
+
+tar xzvf apache-maven-3.8.5-bin.tar.gz
+
+sudo su -       when we are giving this command this will take to the root user
+
+vi .bash_profile
+it opens this file in that we have set the maven path when it opens click on i (i means insert)
+MAVEN_HOME=/opt/apache-maven-3.8.5M2=/opt/apache-maven-3.8.5/bin
+
+M2=/opt/apache-maven-3.8.5/bin
+PATH=$PATH:$HOME/bin:$MAVEN_HOME:$M2
+
+after setting these paths press esc button and enter :wq click enter 
+
+
+
+we can give this command yum install java-1.8.0-openjdk-devel
+logout 
+ls
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+we have to Crete the Docker File and write this 
+
+FROM openjdk:8
+EXPOSE 8080
+COPY test.jar /usr/local/bin/test.jar
+CMD ["java","-jar","/usr/local/bin/test.jar"]
+
+int pom.xml
+
+<packaging>jar</packaging>
+
+<finalName>test</finalName>
+
+Maven Build... it creates the jar File
+
+mobxterm connect to AWS and import that docker and jar file 
+
+in mobxterm we can see the docker file and jar file are added or not (we can do it in ec-2 user)
+
+yum install docker 
+
+usermod -aG docker ec2-user
+
+sudo service docker start
+
+comeback to the ec2 user 
+sudo docker build -t sathish6456/test .
+and
+sudo docker run -p 8080:8080 sathish6456/test
+
+application will running http://3.85.204.24:8080/Hello  by using this port number we get the output 
+					|
+			aws instance:portnumber/endpoint name
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+EC2
+RDX
+Database in aws console we can create the database using the user name and password and endpoint 
+we connect to the database using above mysql -h localhost -u root -p
+						|
+ 				localhost is end point -u username -p password in this C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+
+----------------------------------------**************************************---------------------------------------------------------
+
+	SPRING PROFILE
+spring profile is a technique in which you conditionally activate configuration based on devolopment stage of the project(dev,test,prod)
+name of the properties file sholud be application-dev/prod/test.properties 
+to enable specific profile we must use following environment variable 
+i.e spring.profiles.active=dev/prod/test 
+
+Spring profiles can be also activated while running docker container using following syntax 
+CMD ["java","-Dspring.profiles.active=dev/prod/test","-jar,"test.jar"] 

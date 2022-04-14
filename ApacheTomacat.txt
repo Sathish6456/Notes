@@ -1,0 +1,9 @@
+Apache Tomcat 
+
+we have to add the tags in the tomcat-users.xml
+
+goto the in folder in our tomcat directory open the cmd 
+
+gave a command startup tomcat will run on 8080 by defaultly 
+
+
